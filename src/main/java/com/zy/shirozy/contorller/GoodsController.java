@@ -14,8 +14,7 @@ import com.zy.shirozy.domain.GoodDetaill;
 import com.zy.shirozy.service.GoodDetaillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -31,7 +30,7 @@ public class GoodsController {
     @Autowired
     private GoodDetaillService goodDetaillService;
 
-    @RequestMapping(value = "/goodsadd.do",method = {RequestMethod.POST})
+    @PostMapping("/goodsadd.do")
     public String add(GoodDetaill goodDetaill){
         if(goodDetaillService.insert(goodDetaill)){
             return "redirect:/goodslist.html";

@@ -8,7 +8,7 @@
  * <author>          <time>          <version>          <desc>
  * 作者姓名           修改时间           版本号              描述
  */
-package com.zy.shirozy.service.impl;
+package com.zy.shirozy.manager;
 
 import com.zy.shirozy.common.ResultUtil;
 import com.zy.shirozy.domain.GoodDetaill;

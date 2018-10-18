@@ -21,8 +21,8 @@
 				<h2>个人中心</h2>
 				<a href="set.html"><i class="iconfont">&#xe65d;</i></a>
 			</header>
-			<div class="memList">
-				<div class="top">
+			<div class="memList" id="count">
+				<!--<div class="top">
 					<a href="#"><img src="images/m_07.png"/></a>
 					<p>沫沫澈澈</p>
 					<a href="EditData.html">
@@ -43,16 +43,16 @@
 						<i class="iconfont">&#xf0010;</i>
 						<span>消息</span><span>2</span>
 					</a>
-				</div>
+				</div>-->
 			</div>
 			<div class="inforList">
 				<div class="topNav clearfix tabli">
-					<a href="#" class="on"><span>发布</span><span>5</span></a>
-					<a href="#"><span>收藏</span><span>6</span></a>
+					<a href="#" class="on"><span>发布</span><span></span></a>
+					<a href="#"><span>收藏</span><span></span></a>
 				</div>
 				<div class="tabbott">
-					<div class="infor">
-						<div class="inforM">
+					<div class="infor" id="publish">
+						<!--<div class="inforM">
 							<a href="#">
 								<img src="images/m_02.jpg"/>
 								<span>娘惹糕</span>
@@ -77,13 +77,13 @@
 							</a>
 						</div>
 						<div class="more">
-							<a href="MyWork.html"><i class="iconfont">&#xe61a;</i>
-								<span>查看更多</span>
-							</a>
-						</div>
+						<a href="MyWork.html"><i class="iconfont">&#xe61a;</i>
+							<span>查看更多</span>
+						</a>
+					</div>-->
 					</div>
-					<div class="infor">
-						<div class="inforM">
+					<div class="infor" id="focus">
+						<!--<div class="inforM">
 							<a href="#">
 								<img src="images/m_04.jpg"/>
 								<span>水果蛋糕</span>
@@ -111,7 +111,7 @@
 							<a href="MyWork.html"><i class="iconfont">&#xe61a;</i>
 								<span>查看更多</span>
 							</a>
-						</div>
+						</div>-->
 					</div>
 				</div>
 			</div>
@@ -127,4 +127,110 @@
 	<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="js/public.js"></script>
 	<script src="js/tab.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript">
+		$(function () {
+			$.ajax({
+				type:"get",
+				url:"count.do",
+				dataType:"json",
+				success:function (data) {
+					if (data.code == 1) {
+					    var infos = data.data;
+
+					    $(infos).each(function () {
+                            var html = "";
+							html += "<div class='top'>";
+                            html += "    <a href='#'><img src='images/" + infos.photo + "'/></a>";
+                            html += "    <p>" + infos.uname + "</p>";
+                            html += "   <a href='EditData.html'>";
+                            html += "   <i class='iconfont'>&#xe624;</i>";
+                            html += "<span>编辑资料</span>";
+                            html += "</a>";
+                            html += "</div>";
+
+                            html += "<div class='bottom'>";
+                            html += "   <a href='fans.html'>";
+                            html += "    <i class='iconfont'>&#xe608;</i>";
+                            html += "<span>粉丝</span><span>" + infos.countto +"</span>";
+                            html += "</a>";
+                            html += "<a href='focus.html'>";
+                            html += "   <i class='iconfont'>&#xe64f;</i>";
+                            html += "<span>关注</span><span>" + infos.countbe +"</span>";
+                            html += "</a>";
+                            html += "<a href='Message.html'>";
+                            html += "    <i class='iconfont'>&#xf0010;</i>";
+                            html += "<span>消息</span><span>" + infos.countmsg +"</span>";
+                            html += "</a>";
+                            html += "</div>";
+                            $("#count").append($(html));
+                        })
+					}
+                }
+			})
+        })
+	</script>
+
+	<script type="text/javascript">
+		$(function () {
+			$.ajax({
+				type:"get",
+				url:"publish.do",
+				dataType:"json",
+				success:function (data) {
+					if (data.code == 1) {
+					    var infos = data.data;
+                        var html = "";
+					    $(infos).each(function () {
+
+							html += "<div class='inforM'>";
+                            html +=    "<a href='#'>";
+                            html +=    "<img src='images/" + this.pimage + "'/>";
+                            html +=    "<span>" + this.pname + "</span>";
+                            html +=    "</a>";
+                            html +=    "</div>";
+                        })
+                        html += "<div class='more'>";
+                        html +=    "<a href='MyWork.html'><i class='iconfont'>&#xe61a;</i>";
+                        html +=    "<span>查看更多</span>";
+                        html +=    "</a>";
+                        html +=    "</div>";
+                        $("#publish").append($(html));
+					}
+                }
+			})
+        })
+
+
+	</script>
+	<script type="text/javascript">
+        $(function () {
+            $.ajax({
+                type:"get",
+                url:"focusgoodslist.do",
+                dataType:"json",
+                success:function (data) {
+                    if (data.code == 1) {
+                        var infos = data.data;
+                        var html = "";
+                        $(infos).each(function () {
+
+                            html += "<div class='inforM'>";
+                            html +=    "<a href='#'>";
+                            html +=    "<img src='images/" + this.img + "'/>";
+                            html +=    "<span>" + this.name + "</span>";
+                            html +=    "</a>";
+                            html +=    "</div>";
+                        })
+                        html += "<div class='more'>";
+                        html +=    "<a href='MyWork.html'><i class='iconfont'>&#xe61a;</i>";
+                        html +=    "<span>查看更多</span>";
+                        html +=    "</a>";
+                        html +=    "</div>";
+                        $("#focus").append($(html));
+                    }
+                }
+            })
+        })
+	</script>
 </html>

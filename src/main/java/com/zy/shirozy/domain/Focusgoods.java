@@ -5,7 +5,7 @@ public class Focusgoods {
 
     private Integer goodid;
 
-    private String user;
+    private Integer uid;
 
     public Integer getId() {
         return id;
@@ -23,11 +23,11 @@ public class Focusgoods {
         this.goodid = goodid;
     }
 
-    public String getUser() {
-        return user;
+    public Integer getUid() {
+        return uid;
     }
 
-    public void setUser(String user) {
-        this.user = user == null ? null : user.trim();
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 }
